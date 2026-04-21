@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Principal</title>
+        <meta charset="UTF-8">
+        <!-- llamar al estilo de la pagina-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+      <style>
+           body {
+            background: linear-gradient(0deg, #1b1b1b, #2b0000);
+            height: 100vh;
+        }
+
+        .login-card {
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.411);
+            background: linear-gradient(180deg, #ffffff, #dfdfdf);
+            color: rgb(0, 0, 0);
+        }
+
+        .form-control {
+            border-radius: 20px;
+            border-style: solid;
+            border-color:  rgba(43, 43, 43, 0.315);
+        }
+
+        .btn-primary {
+            border-radius: 20px;
+            border-color: rgb(92, 144, 211);
+            background-color: rgb(120, 179, 255);
+        }
+        .btn-primary:hover {
+            background-color: rgb(75, 126, 192);
+            border-color: rgb(116, 163, 224); 
+        }
+
+        .btn-danger {
+            border-radius: 20px;
+            border-color: rgb(211, 92, 92);
+            background-color: rgb(255, 120, 120);
+        }
+    </style>
+
+    </head>
+    
+<body class="d-flex justify-content-center align-items-center">
+
+<div class="col-md-4">
+    <div class="card login-card p-4">
+
+         <h2><i>Editar Empleado</i></h2>
+
+        <form method="POST" action="{{ url_for('actualizar_empleados') }}">
+           <input type="hidden" name="id" value="{{ emp[0] }}">
+
+            <div class="mb-3">
+                <label>Documento</label>
+                <input type="text" name="txtdocumento" class="form-control" value="{{ emp[1] }}" disabled placeholder="Documento">
+            </div>
+
+            <div class="mb-3">
+                <label>Nombre</label>
+                <input type="text" name="txtnombre" class="form-control" value="{{ emp[2] }}" placeholder="Nombre">
+            </div>
+
+            <div class="mb-3">
+                <label>Apellido</label>
+                <input type="text" name="txtapellido" class="form-control" value="{{ emp[3] }}" placeholder="Apellido">
+            </div>
+
+            <div class="mb-3">
+                <label>Cargo</label>
+                    <input type="text" name="txtcargo" class="form-control" value="{{ emp[4] }}" placeholder="Cargo">
+            </div>
+
+            <div class="mb-3">
+                <label>Horas Extras</label>
+                <input type="number" name="txthorasextras" class="form-control" value="{{ emp[6] }}" placeholder="Horas Extras">
+            </div>
+
+            <div class="mb-3">
+                <label>Bonificación</label>
+                <input type="number" name="txtbonificacion" class="form-control" value="{{ emp[7] }}" placeholder="Bonificación">
+            </div>
+
+             <div class="mb-3">
+                <label>Departamento</label>
+                <input type="number" name="txtid_dep" class="form-control" value="{{ emp[11] }}" placeholder="Departamento">
+
+            <button type="submit" class="btn btn-primary my-3">Actualizar</button>
+            <a href="{{ url_for('index') }}" class="btn btn-danger mx-1">Cancelar</a>
+        </form>
+    </body>
+</html>

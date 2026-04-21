@@ -1,0 +1,78 @@
+<style>
+      .btn-warning {
+            border-radius: 20px;
+            border-color: rgb(92, 144, 211);
+            background-color: rgb(120, 179, 255);
+        }
+        .btn-warning:hover {
+            background-color: rgb(75, 126, 192);
+            border-color: rgb(116, 163, 224); 
+        }
+
+        .btn-danger {
+            border-radius: 20px;
+            border-color: rgb(211, 92, 92);
+            background-color: rgb(255, 120, 120);
+        }
+        .btn-success {
+        border-radius: 20px;
+        border-color: rgb(185, 76, 176);
+        background-color: rgb(255, 138, 239);
+        }
+        .btn-success:hover {
+        background-color: rgb(192, 71, 165);
+        border-color: rgb(185, 76, 176);
+        }
+</style>
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title"><i><i>REGISTRAR USUARIO</i></i></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                        <form method="POST" action="{{ url_for('guardar_usuario')}}">
+
+                            <div class="mb-3">
+                                <label><i><i>Nombre</i></i></label>
+                                <input type="text" class="form-control" name="txtusuario" placeholder="Usuario">
+                            </div>
+
+                            <div class="mb-3">
+                                <label><i>Contraseña</i></label>
+                                <input type="password" class="form-control" name="txtcontrasena" placeholder="Contraseña">
+                            </div>
+
+                            <div class="mb-3">
+                                <label><i><i>Rol</i></i></label>
+                                <select class="form-select" name="txtrol">
+                                    <option value=""><i>Seleccione</i></option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="empleado">Empleado</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label><i>Documento</i></label>
+                                <input type="text" class="form-control" name="txtdocumento" placeholder="Documento">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i>Registrar</i>
+                                </button>
+
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                    <i>Cancelar</i>
+                                </button>
+                            </div>
+                        </form>
+            </div>
+        </div>
+    </div>
+</div>
