@@ -31,6 +31,25 @@ def index():
 
     return render_template("index.html", usuario=session['usuario'], lista=lista, empleados=empleados)
 
+#--Index Empleado
+
+@apps.route('/indexpleado')
+def indexpleado():
+    if 'usuario' not in session:
+        return redirect(url_for('mostrar_login'))
+    
+    con = conectar()
+    cursor = con.cursor()
+
+    sql = "SELECT * FROM usuarios"
+    cursor.execute(sql)
+    lista = cursor.fetchall()
+
+    sql = "SELECT * FROM empleados"
+    cursor.execute(sql)
+    empleados = cursor.fetchall()
+
+    return render_template("AccessEmple.html", usuario=session['usuario'], lista=lista, empleados=empleados)
 #--
 @apps.route('/login', methods=["POST"])
 def login_form():
@@ -56,7 +75,7 @@ def login_form():
         if rol == "administrador":
             return redirect(url_for('index'))
         else:
-            return "---Bienvenido Empleado---"
+            return redirect(url_for('indexpleado'))
     else:
         flash("Usuario/Contraseña Incorrectos", "danger")
         return redirect(url_for('mostrar_login'))
@@ -295,6 +314,9 @@ def actualizar_empleados():
 
     flash("Empleado Actualizado", "success")
     return redirect(url_for('index'))
+    
+
+
 
 if __name__ == '__main__':
     apps.run(debug=True)
