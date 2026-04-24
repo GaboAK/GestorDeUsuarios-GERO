@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Empleados</title>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+      .btn-warning {
+            border-radius: 20px;
+            border-color: rgb(92, 144, 211);
+            background-color: rgb(120, 179, 255);
+        }
+        .btn-warning:hover {
+            background-color: rgb(75, 126, 192);
+            border-color: rgb(116, 163, 224); 
+        }
+
+        .btn-danger {
+            border-radius: 20px;
+            border-color: rgb(211, 92, 92);
+            background-color: rgb(255, 120, 120);
+        }
+        .btn-success {
+        border-radius: 20px;
+        border-color: rgb(69, 141, 40);
+        background-color: rgb(94, 209, 83);
+        }
+        .btn-success:hover {
+        background-color: rgb(71, 192, 111);
+        border-color: rgb(76, 185, 94);
+        }
+           body {
+            background: linear-gradient(0deg, #1b1b1b, #2b0000);
+            height: 100vh;
+        }
+
+        .login-card {
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.411);
+            background: linear-gradient(180deg, #ffffff, #dfdfdf);
+            color: rgb(0, 0, 0);
+        }
+
+        .form-control {
+            border-radius: 20px;
+            border-style: solid;
+            border-color:  rgba(43, 43, 43, 0.315);
+        }
+
+        .btn-primary {
+            border-radius: 20px;
+            border-color: rgb(92, 144, 211);
+            background-color: rgb(120, 179, 255);
+        }
+        .btn-primary:hover {
+            background-color: rgb(75, 126, 192);
+            border-color: rgb(116, 163, 224); 
+        }
+
+        .btn-danger {
+            border-radius: 20px;
+            border-color: rgb(211, 92, 92);
+            background-color: rgb(255, 120, 120);
+        }
+        .bgtxt{
+            font-size: 30px;
+            background: linear-gradient(180deg, #000000, #aaaaaa); 
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; 
+            text-align: center;
+        }
+        h4{
+            justify-content: center;
+            text-align: center;
+            margin-top: 10px;
+            background-color: rgb(236, 236, 236);
+            border-radius: 30px;
+        }
+
+</style>
+
+</head>
+   
+<body>
+    <div class ="container mt-5">
+        <div class="rounded-5 card shadow p-4">
+ 
+            <div class=" bgtxt primary text-primary">
+                <h1>BIENVENIDO EMPLEADO</h1>
+            </div>
+                <button class ="btn btn-danger m-2 " onclick="window.location.href='/logout' ">
+                    <i>Salir</i>
+                </button>
+                
+                <table class="table table-bordered mt-3 w-100 text-center">
+    <thead class="table-primary text-center ">
+        <h4>TU TABLA INFORMATIVA</h1>
+        <tr>
+            <td><i>ID</i></td>
+            <td><i>Documento</i></td>
+            <td><i>Nombre</i></td>
+            <td><i>Apellido</i></td>
+            <td><i>Cargo</i></td>
+            <td><i>Salario base</i></td>
+            <td><i>Horas extras</i></td>
+            <td><i>Bonificación</i></td>
+            <td><i>Salud</i></td>
+            <td><i>Pension</i></td>
+            <td><i>Salario Neto</i></td>
+            <td><i>ID Departamento</i></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in empleados %}
+        <tr>
+            
+            <td>{{ e[0] }}</td>
+            <td>{{ e[1] }}</td>
+            <td>{{ e[2] }}</td>
+            <td>{{ e[3] }}</td>
+            <td>{{ e[4] }}</td>
+            <td>{{ e[5] }}</td>
+            <td>{{ e[6] }}</td>
+            <td>{{ e[7] }}</td>
+            <td>{{ e[8] }}</td>
+            <td>{{ e[9] }}</td>
+            <td>{{ e[10] }}</td>
+            <td>{{ e[11] }}</td>
+            <a href="{{ url_for('editemplefrom', id=e[0]) }}" class="btn btn-warning btn-sm d-flex justify-content-center my-1"><i>Editar</i></a>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+            </div>
+        </div>
+    <div>
+        
+            
+</body>
