@@ -232,8 +232,10 @@ def editarusu(id):
 
     return render_template("editarusuario.html", usu=usuario)
 
+#-- Editar Empleado Por el Usuario
+
 #--Actualizar Form
-@apps.route('/actualizar_usuario', methods=['POST'])
+@apps.route('/actualizar_usuarios', methods=['POST'])
 def actualizar_usuarios():
 
     id = request.form['id']
@@ -315,7 +317,48 @@ def actualizar_empleados():
     flash("Empleado Actualizado", "success")
     return redirect(url_for('index'))
     
+#______________________________________________________________________
 
+@apps.route('/editemplefrom/<int:id>')
+def editemplefrom(id):
+
+    if 'usuario' not in session:
+        return redirect(url_for('mostrar_login'))
+
+    con = conectar()
+    cursor = con.cursor()
+
+    cursor.execute("SELECT * FROM empleados WHERE id = %s", (id,))
+    empleado = cursor.fetchone()
+
+    cursor.close()
+    con.close()
+
+    return render_template("EditUserEmple.html", emp=empleado)
+
+#--Actualizar la información del formulario
+@apps.route('/update_emple', methods=['POST'])
+def update_emple():
+
+    id = request.form['id']
+    nombre = request.form['txtnombre']
+    apellido = request.form['txtapellido']
+    cargo = request.form['txtcargo']
+    id_dep = request.form['txtid_dep']
+
+    con = conectar()
+    cursor = con.cursor()
+
+    sqle = "UPDATE empleados SET nombre=%s, apellido=%s, cargo=%s, id_dep=%s WHERE id=%s"
+    cursor.execute(sqle, (nombre, apellido, cargo, id_dep, id))
+    con.commit()
+
+    cursor.close()
+    con.close()
+
+    flash("Empleado Actualizado", "success")
+    return redirect(url_for('indexpleado'))
+    
 
 
 if __name__ == '__main__':
